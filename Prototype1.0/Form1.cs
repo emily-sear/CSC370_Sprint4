@@ -35,7 +35,7 @@ namespace Prototype1._0
         public static DataTable theDataContainerBurette = new DataTable();
         public static DataTable theDataContainerThermometer = new DataTable();
         public static DataTable theDataContainerBalance = new DataTable();
-        public DataTable theMasterDataTable = new DataTable();
+        public static DataTable theMasterDataTable = new DataTable();
 
         //Next sprint will go through these and see what is actually still being used 
         public static double lowValue;
@@ -254,6 +254,7 @@ namespace Prototype1._0
                         Marshal.ReleaseComObject(excelApp);
 
                         findAverage();
+                        findStandardDev();
                         setHighValue();
                         setLowValue();
 
@@ -434,6 +435,7 @@ namespace Prototype1._0
         {
             dataGridView1.DataSource = theDataContainerGraduatedCylinder; //changes the dataSource to the Graduated Cylinder
             this.findAverage();
+            findStandardDev();
 
             //changes the image to the new image
             pictureBox1.Image = Properties.Resources._25014;
@@ -446,6 +448,7 @@ namespace Prototype1._0
         {
             dataGridView1.DataSource = theDataContainerHydrometer;
             this.findAverage();
+            findStandardDev();
 
             //changes the image to the new image
             pictureBox1.Image = Properties.Resources._25014;
@@ -458,6 +461,7 @@ namespace Prototype1._0
         {
             dataGridView1.DataSource = theDataContainerBurette;
             this.findAverage();
+            findStandardDev();
 
             pictureBox1.Image = Properties.Resources.Capture22;
             pictureBox1.Refresh();
@@ -468,6 +472,7 @@ namespace Prototype1._0
         {
             dataGridView1.DataSource = theDataContainerThermometer;
             this.findAverage();
+            findStandardDev();
 
             pictureBox1.Image = Properties.Resources._71Bt_oSijtL__SL1500_;
             pictureBox1.Refresh();
@@ -478,6 +483,7 @@ namespace Prototype1._0
         {
             dataGridView1.DataSource = theDataContainerBalance;
             this.findAverage();
+            findStandardDev();
 
             pictureBox1.Image = Properties.Resources._118976197_183548856633170_5248159684347062085_o;
             pictureBox1.Refresh();
@@ -486,71 +492,40 @@ namespace Prototype1._0
 
         private void label5_Click(object sender, EventArgs e)
         {
-            Form3.addTextToInstanceFields();
-            DataRow rowGraduated = theDataContainerGraduatedCylinder.NewRow();
-            DataRow hydroRow = theDataContainerHydrometer.NewRow();
-            DataRow buretteRow = theDataContainerBurette.NewRow();
-            DataRow thermoRow = theDataContainerThermometer.NewRow();
-            DataRow balanceRow = theDataContainerBalance.NewRow();
-            DataRow masterRow = theMasterDataTable.NewRow();
 
-            //adding the new data to each data table
+        }
 
-            //names to each row
-            rowGraduated[0] = Form3.nameBox;
-            hydroRow[0] = Form3.nameBox;
-            buretteRow[0] = Form3.nameBox;
-            thermoRow[0] = Form3.nameBox;
-            balanceRow[0] = Form3.nameBox;
-            masterRow[0] = Form3.nameBox;
+        private void findStandardDev()
+        {
+            //first find the mean of the dataset 
+            double mean = 0;
+            int count = 0;
+            for(int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if(Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) != 0)
+                {
+                    mean += Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
+                    count++;
 
-            //adding the graduated cylinder row
-            string[] gradSplit = Form3.graduatedBoxes.Split();
-            rowGraduated[1] = gradSplit[0];
-            rowGraduated[2] = gradSplit[1];
-            rowGraduated[3] = gradSplit[0];
-            rowGraduated[4] = gradSplit[0];
-            theDataContainerGraduatedCylinder.Rows.Add(rowGraduated);
+                }
+            }
+            mean = mean / count;
 
-            //adding the hydrometer row
-            string[] hydroSplit = Form3.hydroBoxes.Split();
-            hydroRow[1] = hydroSplit[0];
-            hydroRow[2] = hydroSplit[1];
-            hydroRow[3] = hydroSplit[0];
-            hydroRow[4] = hydroSplit[0];
-            theDataContainerHydrometer.Rows.Add(hydroRow);
+            //next subtract each of the numbers and square the result && add up all the values 
+            double runningTotal = 0;
+            for (int j = 0; j < dataGridView1.RowCount; j++)
+            {
+                if (Convert.ToDouble(dataGridView1.Rows[j].Cells[4].Value) != 0)
+                {
+                    double temp = mean - Convert.ToDouble(dataGridView1.Rows[j].Cells[1].Value);
+                    runningTotal = temp * temp;
+                }
 
-            //adding the burette row
-            string[] buretteSplit = Form3.buretteBoxes.Split();
-            buretteRow[1] = buretteSplit[0];
-            buretteRow[2] = buretteSplit[1];
-            buretteRow[3] = buretteSplit[0];
-            buretteRow[4] = buretteSplit[0];
-            theDataContainerBurette.Rows.Add(buretteRow);
+            }
+            runningTotal = runningTotal / count;
 
-            //adding the thermometer row
-            string[] thermoSplit = Form3.thermometerBoxes.Split();
-            thermoRow[1] = thermoSplit[0];
-            thermoRow[2] = thermoSplit[1];
-            thermoRow[3] = thermoSplit[0];
-            thermoRow[4] = thermoSplit[0];
-            theDataContainerThermometer.Rows.Add(thermoRow);
+            textBox5.Text = Convert.ToString(Math.Sqrt(runningTotal));
 
-            //adding the balance row
-            string[] balanceSplit = Form3.balanceBoxes.Split();
-            balanceRow[1] = balanceSplit[0];
-            balanceRow[2] = balanceSplit[1];
-            balanceRow[3] = balanceSplit[0];
-            balanceRow[4] = balanceSplit[0];
-            theDataContainerBalance.Rows.Add(balanceRow);
-
-            //adding all to the master row 
-            masterRow[1] = Form3.graduatedBoxes;
-            masterRow[2] = Form3.hydroBoxes;
-            masterRow[3] = Form3.buretteBoxes;
-            masterRow[4] = Form3.thermometerBoxes;
-            masterRow[5] = Form3.balanceBoxes;
-            theMasterDataTable.Rows.Add(masterRow);
         }
     }
 }

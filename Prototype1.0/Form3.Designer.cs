@@ -130,7 +130,7 @@ namespace Prototype1._0
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(219, 202);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(132, 22);
             this.textBox1.TabIndex = 7;
@@ -138,7 +138,7 @@ namespace Prototype1._0
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(219, 165);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(132, 22);
             this.textBox2.TabIndex = 8;
@@ -147,7 +147,7 @@ namespace Prototype1._0
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(219, 129);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(132, 22);
             this.textBox3.TabIndex = 9;
@@ -155,7 +155,7 @@ namespace Prototype1._0
             // textBox4
             // 
             this.textBox4.Location = new System.Drawing.Point(219, 92);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox4.Margin = new System.Windows.Forms.Padding(4);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(132, 22);
             this.textBox4.TabIndex = 10;
@@ -163,7 +163,7 @@ namespace Prototype1._0
             // textBox5
             // 
             this.textBox5.Location = new System.Drawing.Point(219, 58);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(132, 22);
             this.textBox5.TabIndex = 11;
@@ -171,7 +171,7 @@ namespace Prototype1._0
             // textBox6
             // 
             this.textBox6.Location = new System.Drawing.Point(377, 58);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(53, 22);
             this.textBox6.TabIndex = 12;
@@ -179,7 +179,7 @@ namespace Prototype1._0
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(377, 92);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(53, 22);
             this.textBox7.TabIndex = 13;
@@ -187,7 +187,7 @@ namespace Prototype1._0
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(377, 129);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(53, 22);
             this.textBox8.TabIndex = 14;
@@ -195,7 +195,7 @@ namespace Prototype1._0
             // textBox9
             // 
             this.textBox9.Location = new System.Drawing.Point(377, 165);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
             this.textBox9.Name = "textBox9";
             this.textBox9.Size = new System.Drawing.Size(53, 22);
             this.textBox9.TabIndex = 15;
@@ -203,7 +203,7 @@ namespace Prototype1._0
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(377, 202);
-            this.textBox10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox10.Margin = new System.Windows.Forms.Padding(4);
             this.textBox10.Name = "textBox10";
             this.textBox10.Size = new System.Drawing.Size(53, 22);
             this.textBox10.TabIndex = 16;
@@ -211,7 +211,7 @@ namespace Prototype1._0
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(188, 290);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(193, 28);
             this.button1.TabIndex = 17;
@@ -221,7 +221,7 @@ namespace Prototype1._0
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(232, 234);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(100, 49);
             this.button2.TabIndex = 18;
@@ -242,7 +242,7 @@ namespace Prototype1._0
             // textBox11
             // 
             this.textBox11.Location = new System.Drawing.Point(77, 16);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(4);
             this.textBox11.Name = "textBox11";
             this.textBox11.Size = new System.Drawing.Size(132, 22);
             this.textBox11.TabIndex = 20;
@@ -273,7 +273,7 @@ namespace Prototype1._0
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form3";
             this.Text = "Form3";
             this.ResumeLayout(false);
