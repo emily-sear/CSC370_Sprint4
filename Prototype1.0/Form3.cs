@@ -18,6 +18,7 @@ namespace Prototype1._0
         public static string buretteBoxes;
         public static string balanceBoxes;
         public static string thermometerBoxes;
+        public static bool switchBack = false; 
 
         public Form3()
         {
@@ -124,6 +125,8 @@ namespace Prototype1._0
             masterRow[4] = Form3.thermometerBoxes;
             masterRow[5] = Form3.balanceBoxes;
             Form1.theMasterDataTable.Rows.Add(masterRow);
+            
+
             
 
         }

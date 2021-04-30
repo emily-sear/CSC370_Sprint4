@@ -37,6 +37,11 @@ namespace Prototype1._0
             this.instructorValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.graduatedCylinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hydrometerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buretteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.analyticalBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thermometerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.graphToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.studentNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,11 +59,6 @@ namespace Prototype1._0
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
-            this.graduatedCylinderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hydrometerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.buretteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.analyticalBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thermometerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -119,6 +119,7 @@ namespace Prototype1._0
             this.instructorValuesToolStripMenuItem.Name = "instructorValuesToolStripMenuItem";
             this.instructorValuesToolStripMenuItem.Size = new System.Drawing.Size(200, 26);
             this.instructorValuesToolStripMenuItem.Text = "Instructor Values";
+            this.instructorValuesToolStripMenuItem.Click += new System.EventHandler(this.instructorValuesToolStripMenuItem_Click);
             // 
             // exportToolStripMenuItem
             // 
@@ -136,9 +137,44 @@ namespace Prototype1._0
             this.analyticalBalanceToolStripMenuItem,
             this.thermometerToolStripMenuItem});
             this.resultsToolStripMenuItem.Name = "resultsToolStripMenuItem";
-            this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 26);
+            this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.resultsToolStripMenuItem.Text = "Results";
             this.resultsToolStripMenuItem.Click += new System.EventHandler(this.resultsToolStripMenuItem_Click);
+            // 
+            // graduatedCylinderToolStripMenuItem
+            // 
+            this.graduatedCylinderToolStripMenuItem.Name = "graduatedCylinderToolStripMenuItem";
+            this.graduatedCylinderToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
+            this.graduatedCylinderToolStripMenuItem.Text = "Graduated Cylinder";
+            this.graduatedCylinderToolStripMenuItem.Click += new System.EventHandler(this.graduatedCylinderToolStripMenuItem_Click_1);
+            // 
+            // hydrometerToolStripMenuItem
+            // 
+            this.hydrometerToolStripMenuItem.Name = "hydrometerToolStripMenuItem";
+            this.hydrometerToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
+            this.hydrometerToolStripMenuItem.Text = "Hydrometer";
+            this.hydrometerToolStripMenuItem.Click += new System.EventHandler(this.hydrometerToolStripMenuItem_Click_1);
+            // 
+            // buretteToolStripMenuItem
+            // 
+            this.buretteToolStripMenuItem.Name = "buretteToolStripMenuItem";
+            this.buretteToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
+            this.buretteToolStripMenuItem.Text = "Burette";
+            this.buretteToolStripMenuItem.Click += new System.EventHandler(this.buretteToolStripMenuItem_Click_1);
+            // 
+            // analyticalBalanceToolStripMenuItem
+            // 
+            this.analyticalBalanceToolStripMenuItem.Name = "analyticalBalanceToolStripMenuItem";
+            this.analyticalBalanceToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
+            this.analyticalBalanceToolStripMenuItem.Text = "Analytical Balance";
+            this.analyticalBalanceToolStripMenuItem.Click += new System.EventHandler(this.analyticalBalanceToolStripMenuItem_Click_1);
+            // 
+            // thermometerToolStripMenuItem
+            // 
+            this.thermometerToolStripMenuItem.Name = "thermometerToolStripMenuItem";
+            this.thermometerToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
+            this.thermometerToolStripMenuItem.Text = "Thermometer";
+            this.thermometerToolStripMenuItem.Click += new System.EventHandler(this.thermometerToolStripMenuItem_Click_1);
             // 
             // viewToolStripMenuItem
             // 
@@ -154,27 +190,28 @@ namespace Prototype1._0
             // graphToolStripMenuItem
             // 
             this.graphToolStripMenuItem.Name = "graphToolStripMenuItem";
-            this.graphToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.graphToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.graphToolStripMenuItem.Text = "Graph";
             this.graphToolStripMenuItem.Click += new System.EventHandler(this.graphToolStripMenuItem_Click);
             // 
             // studentNamesToolStripMenuItem
             // 
             this.studentNamesToolStripMenuItem.Name = "studentNamesToolStripMenuItem";
-            this.studentNamesToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.studentNamesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.studentNamesToolStripMenuItem.Text = "Student Names";
             this.studentNamesToolStripMenuItem.Click += new System.EventHandler(this.studentNamesToolStripMenuItem_Click);
             // 
             // calculateGradesToolStripMenuItem
             // 
             this.calculateGradesToolStripMenuItem.Name = "calculateGradesToolStripMenuItem";
-            this.calculateGradesToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.calculateGradesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.calculateGradesToolStripMenuItem.Text = "Calculate Grades";
+            this.calculateGradesToolStripMenuItem.Click += new System.EventHandler(this.calculateGradesToolStripMenuItem_Click);
             // 
             // clearAllDataToolStripMenuItem
             // 
             this.clearAllDataToolStripMenuItem.Name = "clearAllDataToolStripMenuItem";
-            this.clearAllDataToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.clearAllDataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.clearAllDataToolStripMenuItem.Text = "Clear All Data";
             // 
             // pictureBox1
@@ -299,41 +336,6 @@ namespace Prototype1._0
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
-            // graduatedCylinderToolStripMenuItem
-            // 
-            this.graduatedCylinderToolStripMenuItem.Name = "graduatedCylinderToolStripMenuItem";
-            this.graduatedCylinderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.graduatedCylinderToolStripMenuItem.Text = "Graduated Cylinder";
-            this.graduatedCylinderToolStripMenuItem.Click += new System.EventHandler(this.graduatedCylinderToolStripMenuItem_Click_1);
-            // 
-            // hydrometerToolStripMenuItem
-            // 
-            this.hydrometerToolStripMenuItem.Name = "hydrometerToolStripMenuItem";
-            this.hydrometerToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.hydrometerToolStripMenuItem.Text = "Hydrometer";
-            this.hydrometerToolStripMenuItem.Click += new System.EventHandler(this.hydrometerToolStripMenuItem_Click_1);
-            // 
-            // buretteToolStripMenuItem
-            // 
-            this.buretteToolStripMenuItem.Name = "buretteToolStripMenuItem";
-            this.buretteToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.buretteToolStripMenuItem.Text = "Burette";
-            this.buretteToolStripMenuItem.Click += new System.EventHandler(this.buretteToolStripMenuItem_Click_1);
-            // 
-            // analyticalBalanceToolStripMenuItem
-            // 
-            this.analyticalBalanceToolStripMenuItem.Name = "analyticalBalanceToolStripMenuItem";
-            this.analyticalBalanceToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.analyticalBalanceToolStripMenuItem.Text = "Analytical Balance";
-            this.analyticalBalanceToolStripMenuItem.Click += new System.EventHandler(this.analyticalBalanceToolStripMenuItem_Click_1);
-            // 
-            // thermometerToolStripMenuItem
-            // 
-            this.thermometerToolStripMenuItem.Name = "thermometerToolStripMenuItem";
-            this.thermometerToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.thermometerToolStripMenuItem.Text = "Thermometer";
-            this.thermometerToolStripMenuItem.Click += new System.EventHandler(this.thermometerToolStripMenuItem_Click_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -391,13 +393,13 @@ namespace Prototype1._0
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem graduatedCylinderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hydrometerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem buretteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem analyticalBalanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thermometerToolStripMenuItem;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

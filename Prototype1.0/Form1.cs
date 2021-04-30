@@ -37,11 +37,17 @@ namespace Prototype1._0
         public static DataTable theDataContainerBalance = new DataTable();
         public static DataTable theMasterDataTable = new DataTable();
 
+        //table booleans indicating if they are full or not
+        bool created = false;
+
+        //instructor values and tolerances 
+        public static double[] instructorValues = new double[5];
+        public static double[] tolerances = new double[5];
+
         //Next sprint will go through these and see what is actually still being used 
         public static double lowValue;
         public static double highValue;
-        int theDataCount = 0;
-        double instructorsValue;
+
 
         public Form1()
         {
@@ -166,6 +172,8 @@ namespace Prototype1._0
                         theMasterDataTable.Columns.Add("Burette");
                         theMasterDataTable.Columns.Add("Thermometer");
                         theMasterDataTable.Columns.Add("Analytical Balance");
+
+                        created = true;
 
                         for (int i = 2; i < rowCount; i++)
                         {
@@ -333,7 +341,7 @@ namespace Prototype1._0
 
         }
 
-        private void setLowValue()
+        public void setLowValue()
         {
             double lowest = Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 2].Cells[1].Value);
             for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -347,7 +355,7 @@ namespace Prototype1._0
             lowValue = lowest;
         }
 
-        private void setHighValue()
+        public void setHighValue()
         {
             double highest = Convert.ToDouble(dataGridView1.Rows[1].Cells[1].Value);
             for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -366,7 +374,7 @@ namespace Prototype1._0
 
         }
 
-        private void findAverage()
+        public void findAverage()
         {
             //finds the average and puts this value in the average textbox (textBox3)
             double total = 0;
@@ -392,8 +400,58 @@ namespace Prototype1._0
 
         private void localDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form3 form3 = new Form3();
-            form3.Show();
+            if(created == true)
+            {
+                Form3 form3 = new Form3();
+                form3.Show();
+            }
+            else
+            {
+
+                //Add the labels to each dataContainer
+                theDataContainerGraduatedCylinder.Columns.Add("Names");
+                theDataContainerHydrometer.Columns.Add("Names");
+                theDataContainerBurette.Columns.Add("Names");
+                theDataContainerThermometer.Columns.Add("Names");
+                theDataContainerBalance.Columns.Add("Names");
+                theMasterDataTable.Columns.Add("Names");
+
+                theDataContainerGraduatedCylinder.Columns.Add("Values");
+                theDataContainerHydrometer.Columns.Add("Values");
+                theDataContainerBurette.Columns.Add("Values");
+                theDataContainerThermometer.Columns.Add("Values");
+                theDataContainerBalance.Columns.Add("Values");
+
+                theDataContainerGraduatedCylinder.Columns.Add("Sig Figs");
+                theDataContainerHydrometer.Columns.Add("Sig Figs");
+                theDataContainerBurette.Columns.Add("Sig Figs");
+                theDataContainerThermometer.Columns.Add("Sig Figs");
+                theDataContainerBalance.Columns.Add("Sig Figs");
+
+                theDataContainerGraduatedCylinder.Columns.Add("Units");
+                theDataContainerHydrometer.Columns.Add("Units");
+                theDataContainerBurette.Columns.Add("Units");
+                theDataContainerThermometer.Columns.Add("Units");
+                theDataContainerBalance.Columns.Add("Units");
+
+                theDataContainerGraduatedCylinder.Columns.Add("Counted Values");
+                theDataContainerHydrometer.Columns.Add("Counted Values");
+                theDataContainerBurette.Columns.Add("Counted Values");
+                theDataContainerThermometer.Columns.Add("Counted Values");
+                theDataContainerBalance.Columns.Add("Counted Values");
+
+                theMasterDataTable.Columns.Add("Graduated Cylinder");
+                theMasterDataTable.Columns.Add("Hydrometer");
+                theMasterDataTable.Columns.Add("Burette");
+                theMasterDataTable.Columns.Add("Thermometer");
+                theMasterDataTable.Columns.Add("Analytical Balance");
+                created = true;
+
+                Form3 form3 = new Form3();
+                form3.Show();
+                
+            }
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -500,9 +558,9 @@ namespace Prototype1._0
             //first find the mean of the dataset 
             double mean = 0;
             int count = 0;
-            for(int i = 0; i < dataGridView1.RowCount; i++)
+            for (int i = 0; i < dataGridView1.RowCount; i++)
             {
-                if(Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) != 0)
+                if (Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) != 0)
                 {
                     mean += Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
                     count++;
@@ -526,6 +584,135 @@ namespace Prototype1._0
 
             textBox5.Text = Convert.ToString(Math.Sqrt(runningTotal));
 
+        }
+
+        private void instructorValuesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form4 form4 = new Form4();
+            form4.Show();
+        }
+
+        private void calculateGradesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //add new columns to each datatable 
+            theDataContainerGraduatedCylinder.Columns.Add("Graded Value");
+            theDataContainerHydrometer.Columns.Add("Graded Value");
+            theDataContainerBurette.Columns.Add("Graded Value");
+            theDataContainerThermometer.Columns.Add("Graded Value");
+            theDataContainerBalance.Columns.Add("Graded Value");
+            theMasterDataTable.Columns.Add("Total Grade (Out of 5)");
+
+            //look at the values in each given table and determine if it is within the correct tolerance 
+            for (int i = 0; i < theDataContainerGraduatedCylinder.Rows.Count; i++)
+            {
+                if (Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][1]) > (instructorValues[0] + tolerances[0]) || Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][1]) < (instructorValues[0] - tolerances[0]))
+                {
+                    theDataContainerGraduatedCylinder.Rows[i].BeginEdit();
+                    theDataContainerGraduatedCylinder.Rows[i][5] = 0;
+                    theDataContainerGraduatedCylinder.Rows[i].AcceptChanges();
+                    theDataContainerGraduatedCylinder.Rows[i].EndEdit();
+                }
+                else
+                {
+                    theDataContainerGraduatedCylinder.Rows[i].BeginEdit();
+                    theDataContainerGraduatedCylinder.Rows[i][5] = 1;
+                    theDataContainerGraduatedCylinder.Rows[i].AcceptChanges();
+                    theDataContainerGraduatedCylinder.Rows[i].EndEdit();
+                }
+            }
+
+            for (int i = 0; i < theDataContainerHydrometer.Rows.Count; i++)
+            {
+                if (Convert.ToDouble(theDataContainerHydrometer.Rows[i][1]) > (instructorValues[1] + tolerances[1]) || Convert.ToDouble(theDataContainerHydrometer.Rows[i][1]) < (instructorValues[1] - tolerances[1]))
+                {
+                    theDataContainerHydrometer.Rows[i].BeginEdit();
+                    theDataContainerHydrometer.Rows[i][5] = 0;
+                    theDataContainerHydrometer.Rows[i].AcceptChanges();
+                    theDataContainerHydrometer.Rows[i].EndEdit();
+                }
+                else
+                {
+                    theDataContainerHydrometer.Rows[i].BeginEdit();
+                    theDataContainerHydrometer.Rows[i][5] = 1;
+                    theDataContainerHydrometer.Rows[i].AcceptChanges();
+                    theDataContainerHydrometer.Rows[i].EndEdit();
+                }
+            }
+
+            for (int i = 0; i < theDataContainerBurette.Rows.Count; i++)
+            {
+                if (Convert.ToDouble(theDataContainerBurette.Rows[i][1]) > (instructorValues[2] + tolerances[2]) || Convert.ToDouble(theDataContainerBurette.Rows[i][1]) < (instructorValues[2] - tolerances[2]))
+                {
+                    theDataContainerBurette.Rows[i].BeginEdit();
+                    theDataContainerBurette.Rows[i][5] = 0;
+                    theDataContainerBurette.Rows[i].AcceptChanges();
+                    theDataContainerBurette.Rows[i].EndEdit();
+                }
+                else
+                {
+                    theDataContainerBurette.Rows[i].BeginEdit();
+                    theDataContainerBurette.Rows[i][5] = 1;
+                    theDataContainerBurette.Rows[i].AcceptChanges();
+                    theDataContainerBurette.Rows[i].EndEdit();
+                }
+            }
+
+            for (int i = 0; i < theDataContainerThermometer.Rows.Count; i++)
+            {
+                if (Convert.ToDouble(theDataContainerThermometer.Rows[i][1]) > (instructorValues[3] + tolerances[3]) || Convert.ToDouble(theDataContainerThermometer.Rows[i][1]) < (instructorValues[3] - tolerances[3]))
+                {
+                    theDataContainerThermometer.Rows[i].BeginEdit();
+                    theDataContainerThermometer.Rows[i][5] = 0;
+                    theDataContainerThermometer.Rows[i].AcceptChanges();
+                    theDataContainerThermometer.Rows[i].EndEdit();
+                }
+                else
+                {
+                    theDataContainerThermometer.Rows[i].BeginEdit();
+                    theDataContainerThermometer.Rows[i][5] = 1;
+                    theDataContainerThermometer.Rows[i].AcceptChanges();
+                    theDataContainerThermometer.Rows[i].EndEdit();
+                }
+            }
+
+            for (int i = 0; i < theDataContainerBalance.Rows.Count; i++)
+            {
+                if (Convert.ToDouble(theDataContainerBalance.Rows[i][1]) > (instructorValues[4] + tolerances[4]) || Convert.ToDouble(theDataContainerBalance.Rows[i][1]) < (instructorValues[4] - tolerances[4]))
+                {
+                    theDataContainerBalance.Rows[i].BeginEdit();
+                    theDataContainerBalance.Rows[i][5] = 0;
+                    theDataContainerBalance.Rows[i].AcceptChanges();
+                    theDataContainerBalance.Rows[i].EndEdit();
+                }
+                else
+                {
+                    theDataContainerBalance.Rows[i].BeginEdit();
+                    theDataContainerBalance.Rows[i][5] = 1;
+                    theDataContainerBalance.Rows[i].AcceptChanges();
+                    theDataContainerBalance.Rows[i].EndEdit();
+                }
+            }
+
+            for (int i = 0; i < theMasterDataTable.Rows.Count; i++)
+            {
+                theMasterDataTable.Rows[i].BeginEdit();
+                theMasterDataTable.Rows[i][6] = Convert.ToDouble(theDataContainerBalance.Rows[i][5]) + Convert.ToDouble(theDataContainerThermometer.Rows[i][5]) + Convert.ToDouble(theDataContainerBurette.Rows[i][5]) + Convert.ToDouble(theDataContainerHydrometer.Rows[i][5]) + Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][5]);
+                theMasterDataTable.Rows[i].AcceptChanges();
+                theMasterDataTable.Rows[i].EndEdit();
+            }
+
+        }
+
+        public void makingTheDataTable()
+        {
+            dataGridView1.DataSource = theDataContainerGraduatedCylinder; //assign DataTable as Datasource for DataGridview
+            dataGridView1.Columns[0].Visible = false; //makes the names invisible originally
+
+
+            findAverage();
+            findStandardDev();
+            setHighValue();
+            setLowValue();
         }
     }
 }
