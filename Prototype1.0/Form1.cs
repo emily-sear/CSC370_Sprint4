@@ -4,6 +4,8 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Prototype1._0
 {
@@ -448,8 +450,18 @@ namespace Prototype1._0
                 created = true;
 
                 Form3 form3 = new Form3();
-                form3.Show();
-                
+                form3.ShowDialog();
+               
+
+                dataGridView1.DataSource = theDataContainerGraduatedCylinder; //assign DataTable as Datasource for DataGridview
+                dataGridView1.Columns[0].Visible = false; //makes the names invisible originally
+
+                findAverage();
+                findStandardDev();
+                setHighValue();
+                setLowValue();
+
+
             }
 
         }
