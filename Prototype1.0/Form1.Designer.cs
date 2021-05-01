@@ -75,7 +75,7 @@ namespace Prototype1._0
             this.menuStrip1.MdiWindowListItem = this.viewToolStripMenuItem;
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(2189, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(1751, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -217,7 +217,7 @@ namespace Prototype1._0
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = global::Prototype1._0.Properties.Resources._118976197_183548856633170_5248159684347062085_o;
+            this.pictureBox1.Image = global::Prototype1._0.Properties.Resources.glass_cylinder_new;
             this.pictureBox1.Location = new System.Drawing.Point(1215, 229);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
