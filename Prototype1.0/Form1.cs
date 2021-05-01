@@ -17,15 +17,17 @@ namespace Prototype1._0
 
     /**
      * Lost some files of this project? 
-     * Go to: https://github.com/emily-sear/Prototype1.0 
+     * Go to: https://github.com/emily-sear/CSC370_Sprint4 
      **/
 
     /**
      * Functionality of the sprint: 
-     * Focus on the "View" portion of the application 
-     * Make a working graph section 
-     * Allow user to view the student names
-     * allow user to enter in instructor values (not allowed to grade quite yet
+     * "Wrapping things up" 
+     * Allow user to input local data 
+     * Allow user to export 
+     * Make instructor values functional 
+     * Make all the pictures and labels work 
+     * Add a help menu
      **/
 
 
@@ -361,6 +363,7 @@ namespace Prototype1._0
         {
             try
             {
+                //looks through the dataGridView and finds the lowest value available
                 double lowest = Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 2].Cells[1].Value);
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
@@ -383,6 +386,7 @@ namespace Prototype1._0
         {
             try
             {
+                //looks through the list and finds the highest value available
                 double highest = Convert.ToDouble(dataGridView1.Rows[1].Cells[1].Value);
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
@@ -431,6 +435,7 @@ namespace Prototype1._0
         {
             try
             {
+                //make excel document for someone to save
                 Prototype1._0.ExcelUtility excelUtility = new Prototype1._0.ExcelUtility();
                 excelUtility.WriteDataTableToExcel(theMasterDataTable, "ChemInfo", "@C:/", "Details");
             }
@@ -530,6 +535,7 @@ namespace Prototype1._0
                     }
 
                 }
+                //checking to see if there is a new low or high value
                 if (lowValue < Convert.ToDouble(textBox1.Text))
                 {
                     this.setLowValue();
@@ -560,6 +566,7 @@ namespace Prototype1._0
                 pictureBox1.Image = Properties.Resources._25014;
                 pictureBox1.Refresh();
                 pictureBox1.Visible = true;
+                label6.Text = "Graduated Cylinder";
             }
             catch(Exception ex)
             {
@@ -581,6 +588,7 @@ namespace Prototype1._0
                 pictureBox1.Image = Properties.Resources._25014;
                 pictureBox1.Refresh();
                 pictureBox1.Visible = true;
+                label6.Text = "Hydrometer";
             }
             catch(Exception ex)
             {
@@ -599,6 +607,7 @@ namespace Prototype1._0
                 pictureBox1.Image = Properties.Resources.Capture22;
                 pictureBox1.Refresh();
                 pictureBox1.Visible = true;
+                label6.Text = "Burette";
             }
             catch(Exception ex)
             {
@@ -618,6 +627,7 @@ namespace Prototype1._0
                 pictureBox1.Image = Properties.Resources._71Bt_oSijtL__SL1500_;
                 pictureBox1.Refresh();
                 pictureBox1.Visible = true;
+                label6.Text = "Thermometer";
             }
             catch(Exception ex)
             {
@@ -634,9 +644,10 @@ namespace Prototype1._0
                 this.findAverage();
                 findStandardDev();
 
-                pictureBox1.Image = Properties.Resources._118976197_183548856633170_5248159684347062085_o;
+                pictureBox1.Image = Properties.Resources.en_laboratory_balances_scales_phoenix_instrument_analytical_balance_asn_abn_series;
                 pictureBox1.Refresh();
                 pictureBox1.Visible = true;
+                label6.Text = "Analytical Balance";
             }
             catch (Exception ex)
             {
@@ -678,8 +689,10 @@ namespace Prototype1._0
                     }
 
                 }
+                //divide the total by the count 
                 runningTotal = runningTotal / count;
 
+                //square root the total and that is the std dev
                 textBox5.Text = Convert.ToString(Math.Sqrt(runningTotal));
             }
             catch (Exception ex)
@@ -817,6 +830,52 @@ namespace Prototype1._0
             {
                 MessageBox.Show("Error: Could not add grade values, please ensure that both student and instructor data is added to the system! \nOriginal error:\n " + ex.Message);
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void excelSheetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("For an excel sheet, make sure the file has the following columns in the following order. \nNames\nGraduatedCylinder\nHydrometer\nBurette\nThermometer\nAnalytical Balance\nThis will ensure that your file is added correctly!");
+        }
+
+        private void instructorsValuesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("To view the graded results based on the instructor's values, go to the View tab and click on Calculate Grades");
+        }
+
+        private void exportingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("To export, click on the export tab. This will create an excel file for you! All you have to do is save it normally!");
+        }
+
+        private void clearAllDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //clear out everything
+            theDataContainerGraduatedCylinder = new DataTable();
+            theDataContainerHydrometer = new DataTable();
+            theDataContainerBurette = new DataTable();
+            theDataContainerBalance = new DataTable();
+            theDataContainerThermometer = new DataTable();
+            theMasterDataTable = new DataTable();
+
+            dataGridView1.DataSource = null;
+
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+            textBox5.Text = "";
+
+            label6.Text = "Graduated Cylinder";
+
         }
     }
 }

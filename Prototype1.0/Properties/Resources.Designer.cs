@@ -103,6 +103,17 @@ namespace Prototype1._0.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap en_laboratory_balances_scales_phoenix_instrument_analytical_balance_asn_abn_series {
+            get {
+                object obj = ResourceManager.GetObject("en-laboratory-balances-scales-phoenix-instrument-analytical-balance-asn-abn-serie" +
+                        "s", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Glass_cylinder_32854 {
             get {
                 object obj = ResourceManager.GetObject("Glass_cylinder_32854", resourceCulture);

@@ -183,5 +183,8 @@
   <ItemGroup>
     <None Include="Resources\118976197_183548856633170_5248159684347062085_o.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en-laboratory-balances-scales-phoenix-instrument-analytical-balance-asn-abn-series.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

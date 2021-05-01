@@ -47,7 +47,6 @@ namespace Prototype1._0
             this.studentNamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.calculateGradesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearAllDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -59,9 +58,15 @@ namespace Prototype1._0
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelSheetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.instructorsValuesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -70,7 +75,8 @@ namespace Prototype1._0
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dataToolStripMenuItem,
             this.resultsToolStripMenuItem,
-            this.viewToolStripMenuItem});
+            this.viewToolStripMenuItem,
+            this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.MdiWindowListItem = this.viewToolStripMenuItem;
             this.menuStrip1.Name = "menuStrip1";
@@ -211,27 +217,15 @@ namespace Prototype1._0
             // clearAllDataToolStripMenuItem
             // 
             this.clearAllDataToolStripMenuItem.Name = "clearAllDataToolStripMenuItem";
-            this.clearAllDataToolStripMenuItem.Size = new System.Drawing.Size(203, 26);
+            this.clearAllDataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.clearAllDataToolStripMenuItem.Text = "Clear All Data";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = global::Prototype1._0.Properties.Resources.glass_cylinder_new;
-            this.pictureBox1.Location = new System.Drawing.Point(1215, 229);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(435, 457);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.clearAllDataToolStripMenuItem.Click += new System.EventHandler(this.clearAllDataToolStripMenuItem_Click);
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(1212, 150);
+            this.label1.Location = new System.Drawing.Point(1240, 222);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(52, 17);
             this.label1.TabIndex = 3;
@@ -241,7 +235,7 @@ namespace Prototype1._0
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(1212, 193);
+            this.label2.Location = new System.Drawing.Point(1240, 265);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 17);
             this.label2.TabIndex = 4;
@@ -250,7 +244,7 @@ namespace Prototype1._0
             // textBox1
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Location = new System.Drawing.Point(1271, 144);
+            this.textBox1.Location = new System.Drawing.Point(1299, 216);
             this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(55, 22);
@@ -260,7 +254,7 @@ namespace Prototype1._0
             // textBox2
             // 
             this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox2.Location = new System.Drawing.Point(1271, 189);
+            this.textBox2.Location = new System.Drawing.Point(1299, 261);
             this.textBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(55, 22);
@@ -270,7 +264,7 @@ namespace Prototype1._0
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1212, 711);
+            this.label3.Location = new System.Drawing.Point(1240, 783);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 17);
             this.label3.TabIndex = 8;
@@ -280,7 +274,7 @@ namespace Prototype1._0
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(1212, 737);
+            this.label5.Location = new System.Drawing.Point(1240, 809);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(129, 17);
             this.label5.TabIndex = 10;
@@ -290,7 +284,7 @@ namespace Prototype1._0
             // textBox3
             // 
             this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox3.Location = new System.Drawing.Point(1348, 706);
+            this.textBox3.Location = new System.Drawing.Point(1376, 778);
             this.textBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 22);
@@ -299,7 +293,7 @@ namespace Prototype1._0
             // textBox5
             // 
             this.textBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox5.Location = new System.Drawing.Point(1348, 732);
+            this.textBox5.Location = new System.Drawing.Point(1376, 804);
             this.textBox5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(100, 22);
@@ -329,7 +323,7 @@ namespace Prototype1._0
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Location = new System.Drawing.Point(1259, 67);
+            this.button1.Location = new System.Drawing.Point(1397, 233);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(194, 40);
             this.button1.TabIndex = 19;
@@ -337,11 +331,68 @@ namespace Prototype1._0
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = global::Prototype1._0.Properties.Resources.glass_cylinder_new;
+            this.pictureBox1.Location = new System.Drawing.Point(1243, 301);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(435, 457);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(1234, 111);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(401, 52);
+            this.label6.TabIndex = 22;
+            this.label6.Text = "Graduated Cylinder";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.excelSheetToolStripMenuItem,
+            this.instructorsValuesToolStripMenuItem,
+            this.exportingToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // excelSheetToolStripMenuItem
+            // 
+            this.excelSheetToolStripMenuItem.Name = "excelSheetToolStripMenuItem";
+            this.excelSheetToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.excelSheetToolStripMenuItem.Text = "Excel Sheet";
+            this.excelSheetToolStripMenuItem.Click += new System.EventHandler(this.excelSheetToolStripMenuItem_Click);
+            // 
+            // instructorsValuesToolStripMenuItem
+            // 
+            this.instructorsValuesToolStripMenuItem.Name = "instructorsValuesToolStripMenuItem";
+            this.instructorsValuesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.instructorsValuesToolStripMenuItem.Text = "Instructor\'s Values";
+            this.instructorsValuesToolStripMenuItem.Click += new System.EventHandler(this.instructorsValuesToolStripMenuItem_Click);
+            // 
+            // exportingToolStripMenuItem
+            // 
+            this.exportingToolStripMenuItem.Name = "exportingToolStripMenuItem";
+            this.exportingToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exportingToolStripMenuItem.Text = "Exporting";
+            this.exportingToolStripMenuItem.Click += new System.EventHandler(this.exportingToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1751, 932);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.progressBar1);
@@ -363,8 +414,8 @@ namespace Prototype1._0
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,6 +452,11 @@ namespace Prototype1._0
         private System.Windows.Forms.ToolStripMenuItem analyticalBalanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem thermometerToolStripMenuItem;
         public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem excelSheetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem instructorsValuesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportingToolStripMenuItem;
     }
 }
 
