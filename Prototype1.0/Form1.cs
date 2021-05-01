@@ -274,7 +274,7 @@ namespace Prototype1._0
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: Could not read file from disk. \nOriginal error " + ex.Message);
+                    MessageBox.Show("Error: Could not read file from disk. \nOriginal error:\n " + ex.Message);
                 }
             }
 
@@ -292,15 +292,21 @@ namespace Prototype1._0
 
         private void graphToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2.theData = new double[dataGridView1.RowCount];
-            //Creates and displays table when the "graph" button is clicked
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            try
             {
-                Form2.theData[i] = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
+                Form2.theData = new double[dataGridView1.RowCount];
+                //Creates and displays table when the "graph" button is clicked
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    Form2.theData[i] = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
+                }
+                Form2 graphForm = new Form2();
+                graphForm.Show();
             }
-            Form2 graphForm = new Form2();
-            graphForm.Show();
-            //
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: Could not make a graph. Be sure to enter data first! \nOriginal error:\n " + ex.Message);
+            }
 
         }
 
@@ -311,7 +317,15 @@ namespace Prototype1._0
 
         private void studentNamesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dataGridView1.Columns[0].Visible = true; //changes the names to visible
+            try
+            {
+                dataGridView1.Columns[0].Visible = true; //changes the names to visible
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Could not show student names, be sure to enter in data first! \nOriginal error:\n " + ex.Message);
+            }
         }
 
 
@@ -345,30 +359,45 @@ namespace Prototype1._0
 
         public void setLowValue()
         {
-            double lowest = Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 2].Cells[1].Value);
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            try
             {
-                if (Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value) < lowest && Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) > 0)
+                double lowest = Convert.ToDouble(dataGridView1.Rows[dataGridView1.RowCount - 2].Cells[1].Value);
+                for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
-                    lowest = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
-                }
+                    if (Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value) < lowest && Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) > 0)
+                    {
+                        lowest = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
+                    }
 
+                }
+                lowValue = lowest;
             }
-            lowValue = lowest;
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Could not find the lowest value, be sure to enter in data first! \nOriginal error:\n " + ex.Message);
+            }
+
         }
 
         public void setHighValue()
         {
-            double highest = Convert.ToDouble(dataGridView1.Rows[1].Cells[1].Value);
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            try
             {
-                if (Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) > highest)
+                double highest = Convert.ToDouble(dataGridView1.Rows[1].Cells[1].Value);
+                for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
-                    highest = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
-                }
+                    if (Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) > highest)
+                    {
+                        highest = Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value);
+                    }
 
+                }
+                highValue = highest;
             }
-            highValue = highest;
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: Could not find the high value, be sure to enter in data first! \nOriginal error:\n " + ex.Message);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -378,91 +407,109 @@ namespace Prototype1._0
 
         public void findAverage()
         {
-            //finds the average and puts this value in the average textbox (textBox3)
-            double total = 0;
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            try
             {
-                total += Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
+                //finds the average and puts this value in the average textbox (textBox3)
+                double total = 0;
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    total += Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
 
+                }
+
+                total = total / (dataGridView1.RowCount - 1);
+                textBox3.Text = Convert.ToString(total);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: Could not find the average value, be sure to enter in data first! \nOriginal error:\n " + ex.Message);
             }
 
-            total = total / (dataGridView1.RowCount - 1);
-            textBox3.Text = Convert.ToString(total);
         }
 
         private void exportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            Prototype1._0.ExcelUtility excelUtility = new Prototype1._0.ExcelUtility();
-            excelUtility.WriteDataTableToExcel(theMasterDataTable, "ChemInfo", "@C:/", "Details");
-
-
+            try
+            {
+                Prototype1._0.ExcelUtility excelUtility = new Prototype1._0.ExcelUtility();
+                excelUtility.WriteDataTableToExcel(theMasterDataTable, "ChemInfo", "@C:/", "Details");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Could not create an excel file, be sure to enter in data first! \nOriginal error:\n " + ex.Message);
+            }
         }
 
 
         private void localDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(created == true)
+            try
             {
-                Form3 form3 = new Form3();
-                form3.Show();
+                if (created == true)
+                {
+                    Form3 form3 = new Form3();
+                    form3.Show();
+                }
+                else
+                {
+
+                    //Add the labels to each dataContainer
+                    theDataContainerGraduatedCylinder.Columns.Add("Names");
+                    theDataContainerHydrometer.Columns.Add("Names");
+                    theDataContainerBurette.Columns.Add("Names");
+                    theDataContainerThermometer.Columns.Add("Names");
+                    theDataContainerBalance.Columns.Add("Names");
+                    theMasterDataTable.Columns.Add("Names");
+
+                    theDataContainerGraduatedCylinder.Columns.Add("Values");
+                    theDataContainerHydrometer.Columns.Add("Values");
+                    theDataContainerBurette.Columns.Add("Values");
+                    theDataContainerThermometer.Columns.Add("Values");
+                    theDataContainerBalance.Columns.Add("Values");
+
+                    theDataContainerGraduatedCylinder.Columns.Add("Sig Figs");
+                    theDataContainerHydrometer.Columns.Add("Sig Figs");
+                    theDataContainerBurette.Columns.Add("Sig Figs");
+                    theDataContainerThermometer.Columns.Add("Sig Figs");
+                    theDataContainerBalance.Columns.Add("Sig Figs");
+
+                    theDataContainerGraduatedCylinder.Columns.Add("Units");
+                    theDataContainerHydrometer.Columns.Add("Units");
+                    theDataContainerBurette.Columns.Add("Units");
+                    theDataContainerThermometer.Columns.Add("Units");
+                    theDataContainerBalance.Columns.Add("Units");
+
+                    theDataContainerGraduatedCylinder.Columns.Add("Counted Values");
+                    theDataContainerHydrometer.Columns.Add("Counted Values");
+                    theDataContainerBurette.Columns.Add("Counted Values");
+                    theDataContainerThermometer.Columns.Add("Counted Values");
+                    theDataContainerBalance.Columns.Add("Counted Values");
+
+                    theMasterDataTable.Columns.Add("Graduated Cylinder");
+                    theMasterDataTable.Columns.Add("Hydrometer");
+                    theMasterDataTable.Columns.Add("Burette");
+                    theMasterDataTable.Columns.Add("Thermometer");
+                    theMasterDataTable.Columns.Add("Analytical Balance");
+                    created = true;
+
+                    Form3 form3 = new Form3();
+                    form3.ShowDialog();
+
+
+                    dataGridView1.DataSource = theDataContainerGraduatedCylinder; //assign DataTable as Datasource for DataGridview
+                    dataGridView1.Columns[0].Visible = false; //makes the names invisible originally
+
+                    findAverage();
+                    findStandardDev();
+                    setHighValue();
+                    setLowValue();
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                //Add the labels to each dataContainer
-                theDataContainerGraduatedCylinder.Columns.Add("Names");
-                theDataContainerHydrometer.Columns.Add("Names");
-                theDataContainerBurette.Columns.Add("Names");
-                theDataContainerThermometer.Columns.Add("Names");
-                theDataContainerBalance.Columns.Add("Names");
-                theMasterDataTable.Columns.Add("Names");
-
-                theDataContainerGraduatedCylinder.Columns.Add("Values");
-                theDataContainerHydrometer.Columns.Add("Values");
-                theDataContainerBurette.Columns.Add("Values");
-                theDataContainerThermometer.Columns.Add("Values");
-                theDataContainerBalance.Columns.Add("Values");
-
-                theDataContainerGraduatedCylinder.Columns.Add("Sig Figs");
-                theDataContainerHydrometer.Columns.Add("Sig Figs");
-                theDataContainerBurette.Columns.Add("Sig Figs");
-                theDataContainerThermometer.Columns.Add("Sig Figs");
-                theDataContainerBalance.Columns.Add("Sig Figs");
-
-                theDataContainerGraduatedCylinder.Columns.Add("Units");
-                theDataContainerHydrometer.Columns.Add("Units");
-                theDataContainerBurette.Columns.Add("Units");
-                theDataContainerThermometer.Columns.Add("Units");
-                theDataContainerBalance.Columns.Add("Units");
-
-                theDataContainerGraduatedCylinder.Columns.Add("Counted Values");
-                theDataContainerHydrometer.Columns.Add("Counted Values");
-                theDataContainerBurette.Columns.Add("Counted Values");
-                theDataContainerThermometer.Columns.Add("Counted Values");
-                theDataContainerBalance.Columns.Add("Counted Values");
-
-                theMasterDataTable.Columns.Add("Graduated Cylinder");
-                theMasterDataTable.Columns.Add("Hydrometer");
-                theMasterDataTable.Columns.Add("Burette");
-                theMasterDataTable.Columns.Add("Thermometer");
-                theMasterDataTable.Columns.Add("Analytical Balance");
-                created = true;
-
-                Form3 form3 = new Form3();
-                form3.ShowDialog();
-               
-
-                dataGridView1.DataSource = theDataContainerGraduatedCylinder; //assign DataTable as Datasource for DataGridview
-                dataGridView1.Columns[0].Visible = false; //makes the names invisible originally
-
-                findAverage();
-                findStandardDev();
-                setHighValue();
-                setLowValue();
-
-
-            }
+                MessageBox.Show("Error: Could not create local data, please make sure all data is valid. \nOriginal error:\n " + ex.Message);
+            } 
 
         }
 
@@ -497,67 +544,104 @@ namespace Prototype1._0
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: Could not compare high and low values. Please double check that both a high and low value is inputted. \nOriginal error " + ex.Message);
+                MessageBox.Show("Error: Could not compare high and low values. Please double check that both a high and low value is inputted. \nOriginal error:\n " + ex.Message);
             }
         }
 
         private void graduatedCylinderToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = theDataContainerGraduatedCylinder; //changes the dataSource to the Graduated Cylinder
-            this.findAverage();
-            findStandardDev();
+            try
+            {
+                dataGridView1.DataSource = theDataContainerGraduatedCylinder; //changes the dataSource to the Graduated Cylinder
+                this.findAverage();
+                findStandardDev();
 
-            //changes the image to the new image
-            pictureBox1.Image = Properties.Resources._25014;
-            pictureBox1.Refresh();
-            pictureBox1.Visible = true;
+                //changes the image to the new image
+                pictureBox1.Image = Properties.Resources._25014;
+                pictureBox1.Refresh();
+                pictureBox1.Visible = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: Could not switch to a different table, please ensure that data is entered into the system. \nOriginal error:\n " + ex.Message);
+            }
+
 
         }
 
         private void hydrometerToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = theDataContainerHydrometer;
-            this.findAverage();
-            findStandardDev();
+            try
+            {
+                dataGridView1.DataSource = theDataContainerHydrometer;
+                this.findAverage();
+                findStandardDev();
 
-            //changes the image to the new image
-            pictureBox1.Image = Properties.Resources._25014;
-            pictureBox1.Refresh();
-            pictureBox1.Visible = true;
-
+                //changes the image to the new image
+                pictureBox1.Image = Properties.Resources._25014;
+                pictureBox1.Refresh();
+                pictureBox1.Visible = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: Could not switch to a different table, please ensure that data is entered into the system. \nOriginal error:\n " + ex.Message);
+            }
         }
 
         private void buretteToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = theDataContainerBurette;
-            this.findAverage();
-            findStandardDev();
+            try
+            {
+                dataGridView1.DataSource = theDataContainerBurette;
+                this.findAverage();
+                findStandardDev();
 
-            pictureBox1.Image = Properties.Resources.Capture22;
-            pictureBox1.Refresh();
-            pictureBox1.Visible = true;
+                pictureBox1.Image = Properties.Resources.Capture22;
+                pictureBox1.Refresh();
+                pictureBox1.Visible = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: Could not switch to a different table, please ensure that data is entered into the system. \nOriginal error:\n " + ex.Message);
+            }
+
         }
 
         private void thermometerToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = theDataContainerThermometer;
-            this.findAverage();
-            findStandardDev();
+            try
+            {
+                dataGridView1.DataSource = theDataContainerThermometer;
+                this.findAverage();
+                findStandardDev();
 
-            pictureBox1.Image = Properties.Resources._71Bt_oSijtL__SL1500_;
-            pictureBox1.Refresh();
-            pictureBox1.Visible = true;
+                pictureBox1.Image = Properties.Resources._71Bt_oSijtL__SL1500_;
+                pictureBox1.Refresh();
+                pictureBox1.Visible = true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error: Could not switch to a different table, please ensure that data is entered into the system. \nOriginal error:\n " + ex.Message);
+            }
+
         }
 
         private void analyticalBalanceToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            dataGridView1.DataSource = theDataContainerBalance;
-            this.findAverage();
-            findStandardDev();
+            try
+            {
+                dataGridView1.DataSource = theDataContainerBalance;
+                this.findAverage();
+                findStandardDev();
 
-            pictureBox1.Image = Properties.Resources._118976197_183548856633170_5248159684347062085_o;
-            pictureBox1.Refresh();
-            pictureBox1.Visible = true;
+                pictureBox1.Image = Properties.Resources._118976197_183548856633170_5248159684347062085_o;
+                pictureBox1.Refresh();
+                pictureBox1.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Could not switch to a different table, please ensure that data is entered into the system. \nOriginal error:\n " + ex.Message);
+            }
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -567,164 +651,172 @@ namespace Prototype1._0
 
         private void findStandardDev()
         {
-            //first find the mean of the dataset 
-            double mean = 0;
-            int count = 0;
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            try
             {
-                if (Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) != 0)
+                //first find the mean of the dataset 
+                double mean = 0;
+                int count = 0;
+                for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
-                    mean += Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
-                    count++;
+                    if (Convert.ToDouble(dataGridView1.Rows[i].Cells[4].Value) != 0)
+                    {
+                        mean += Convert.ToDouble(dataGridView1.Rows[i].Cells[1].Value);
+                        count++;
+
+                    }
+                }
+                mean = mean / count;
+
+                //next subtract each of the numbers and square the result && add up all the values 
+                double runningTotal = 0;
+                for (int j = 0; j < dataGridView1.RowCount; j++)
+                {
+                    if (Convert.ToDouble(dataGridView1.Rows[j].Cells[4].Value) != 0)
+                    {
+                        double temp = mean - Convert.ToDouble(dataGridView1.Rows[j].Cells[1].Value);
+                        runningTotal = temp * temp;
+                    }
 
                 }
-            }
-            mean = mean / count;
+                runningTotal = runningTotal / count;
 
-            //next subtract each of the numbers and square the result && add up all the values 
-            double runningTotal = 0;
-            for (int j = 0; j < dataGridView1.RowCount; j++)
+                textBox5.Text = Convert.ToString(Math.Sqrt(runningTotal));
+            }
+            catch (Exception ex)
             {
-                if (Convert.ToDouble(dataGridView1.Rows[j].Cells[4].Value) != 0)
-                {
-                    double temp = mean - Convert.ToDouble(dataGridView1.Rows[j].Cells[1].Value);
-                    runningTotal = temp * temp;
-                }
-
+                MessageBox.Show("Error: Could not find the standard deviation. Please enter data into the system! \nOriginal error:\n " + ex.Message);
             }
-            runningTotal = runningTotal / count;
-
-            textBox5.Text = Convert.ToString(Math.Sqrt(runningTotal));
-
         }
 
         private void instructorValuesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form4 form4 = new Form4();
-            form4.Show();
+            try
+            {
+                Form4 form4 = new Form4();
+                form4.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: Could not add instructor values, please ensure that data is entered correctly in the system! \nOriginal error:\n " + ex.Message);
+            }
+
         }
 
         private void calculateGradesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //add new columns to each datatable 
-            theDataContainerGraduatedCylinder.Columns.Add("Graded Value");
-            theDataContainerHydrometer.Columns.Add("Graded Value");
-            theDataContainerBurette.Columns.Add("Graded Value");
-            theDataContainerThermometer.Columns.Add("Graded Value");
-            theDataContainerBalance.Columns.Add("Graded Value");
-            theMasterDataTable.Columns.Add("Total Grade (Out of 5)");
-
-            //look at the values in each given table and determine if it is within the correct tolerance 
-            for (int i = 0; i < theDataContainerGraduatedCylinder.Rows.Count; i++)
+            try
             {
-                if (Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][1]) > (instructorValues[0] + tolerances[0]) || Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][1]) < (instructorValues[0] - tolerances[0]))
+                //add new columns to each datatable 
+                theDataContainerGraduatedCylinder.Columns.Add("Graded Value");
+                theDataContainerHydrometer.Columns.Add("Graded Value");
+                theDataContainerBurette.Columns.Add("Graded Value");
+                theDataContainerThermometer.Columns.Add("Graded Value");
+                theDataContainerBalance.Columns.Add("Graded Value");
+                theMasterDataTable.Columns.Add("Total Grade (Out of 5)");
+
+                //look at the values in each given table and determine if it is within the correct tolerance 
+                for (int i = 0; i < theDataContainerGraduatedCylinder.Rows.Count; i++)
                 {
-                    theDataContainerGraduatedCylinder.Rows[i].BeginEdit();
-                    theDataContainerGraduatedCylinder.Rows[i][5] = 0;
-                    theDataContainerGraduatedCylinder.Rows[i].AcceptChanges();
-                    theDataContainerGraduatedCylinder.Rows[i].EndEdit();
+                    if (Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][1]) > (instructorValues[0] + tolerances[0]) || Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][1]) < (instructorValues[0] - tolerances[0]))
+                    {
+                        theDataContainerGraduatedCylinder.Rows[i].BeginEdit();
+                        theDataContainerGraduatedCylinder.Rows[i][5] = 0;
+                        theDataContainerGraduatedCylinder.Rows[i].AcceptChanges();
+                        theDataContainerGraduatedCylinder.Rows[i].EndEdit();
+                    }
+                    else
+                    {
+                        theDataContainerGraduatedCylinder.Rows[i].BeginEdit();
+                        theDataContainerGraduatedCylinder.Rows[i][5] = 1;
+                        theDataContainerGraduatedCylinder.Rows[i].AcceptChanges();
+                        theDataContainerGraduatedCylinder.Rows[i].EndEdit();
+                    }
                 }
-                else
+
+                for (int i = 0; i < theDataContainerHydrometer.Rows.Count; i++)
                 {
-                    theDataContainerGraduatedCylinder.Rows[i].BeginEdit();
-                    theDataContainerGraduatedCylinder.Rows[i][5] = 1;
-                    theDataContainerGraduatedCylinder.Rows[i].AcceptChanges();
-                    theDataContainerGraduatedCylinder.Rows[i].EndEdit();
+                    if (Convert.ToDouble(theDataContainerHydrometer.Rows[i][1]) > (instructorValues[1] + tolerances[1]) || Convert.ToDouble(theDataContainerHydrometer.Rows[i][1]) < (instructorValues[1] - tolerances[1]))
+                    {
+                        theDataContainerHydrometer.Rows[i].BeginEdit();
+                        theDataContainerHydrometer.Rows[i][5] = 0;
+                        theDataContainerHydrometer.Rows[i].AcceptChanges();
+                        theDataContainerHydrometer.Rows[i].EndEdit();
+                    }
+                    else
+                    {
+                        theDataContainerHydrometer.Rows[i].BeginEdit();
+                        theDataContainerHydrometer.Rows[i][5] = 1;
+                        theDataContainerHydrometer.Rows[i].AcceptChanges();
+                        theDataContainerHydrometer.Rows[i].EndEdit();
+                    }
+                }
+
+                for (int i = 0; i < theDataContainerBurette.Rows.Count; i++)
+                {
+                    if (Convert.ToDouble(theDataContainerBurette.Rows[i][1]) > (instructorValues[2] + tolerances[2]) || Convert.ToDouble(theDataContainerBurette.Rows[i][1]) < (instructorValues[2] - tolerances[2]))
+                    {
+                        theDataContainerBurette.Rows[i].BeginEdit();
+                        theDataContainerBurette.Rows[i][5] = 0;
+                        theDataContainerBurette.Rows[i].AcceptChanges();
+                        theDataContainerBurette.Rows[i].EndEdit();
+                    }
+                    else
+                    {
+                        theDataContainerBurette.Rows[i].BeginEdit();
+                        theDataContainerBurette.Rows[i][5] = 1;
+                        theDataContainerBurette.Rows[i].AcceptChanges();
+                        theDataContainerBurette.Rows[i].EndEdit();
+                    }
+                }
+
+                for (int i = 0; i < theDataContainerThermometer.Rows.Count; i++)
+                {
+                    if (Convert.ToDouble(theDataContainerThermometer.Rows[i][1]) > (instructorValues[3] + tolerances[3]) || Convert.ToDouble(theDataContainerThermometer.Rows[i][1]) < (instructorValues[3] - tolerances[3]))
+                    {
+                        theDataContainerThermometer.Rows[i].BeginEdit();
+                        theDataContainerThermometer.Rows[i][5] = 0;
+                        theDataContainerThermometer.Rows[i].AcceptChanges();
+                        theDataContainerThermometer.Rows[i].EndEdit();
+                    }
+                    else
+                    {
+                        theDataContainerThermometer.Rows[i].BeginEdit();
+                        theDataContainerThermometer.Rows[i][5] = 1;
+                        theDataContainerThermometer.Rows[i].AcceptChanges();
+                        theDataContainerThermometer.Rows[i].EndEdit();
+                    }
+                }
+
+                for (int i = 0; i < theDataContainerBalance.Rows.Count; i++)
+                {
+                    if (Convert.ToDouble(theDataContainerBalance.Rows[i][1]) > (instructorValues[4] + tolerances[4]) || Convert.ToDouble(theDataContainerBalance.Rows[i][1]) < (instructorValues[4] - tolerances[4]))
+                    {
+                        theDataContainerBalance.Rows[i].BeginEdit();
+                        theDataContainerBalance.Rows[i][5] = 0;
+                        theDataContainerBalance.Rows[i].AcceptChanges();
+                        theDataContainerBalance.Rows[i].EndEdit();
+                    }
+                    else
+                    {
+                        theDataContainerBalance.Rows[i].BeginEdit();
+                        theDataContainerBalance.Rows[i][5] = 1;
+                        theDataContainerBalance.Rows[i].AcceptChanges();
+                        theDataContainerBalance.Rows[i].EndEdit();
+                    }
+                }
+
+                for (int i = 0; i < theMasterDataTable.Rows.Count; i++)
+                {
+                    theMasterDataTable.Rows[i].BeginEdit();
+                    theMasterDataTable.Rows[i][6] = Convert.ToDouble(theDataContainerBalance.Rows[i][5]) + Convert.ToDouble(theDataContainerThermometer.Rows[i][5]) + Convert.ToDouble(theDataContainerBurette.Rows[i][5]) + Convert.ToDouble(theDataContainerHydrometer.Rows[i][5]) + Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][5]);
+                    theMasterDataTable.Rows[i].AcceptChanges();
+                    theMasterDataTable.Rows[i].EndEdit();
                 }
             }
-
-            for (int i = 0; i < theDataContainerHydrometer.Rows.Count; i++)
+            catch (Exception ex)
             {
-                if (Convert.ToDouble(theDataContainerHydrometer.Rows[i][1]) > (instructorValues[1] + tolerances[1]) || Convert.ToDouble(theDataContainerHydrometer.Rows[i][1]) < (instructorValues[1] - tolerances[1]))
-                {
-                    theDataContainerHydrometer.Rows[i].BeginEdit();
-                    theDataContainerHydrometer.Rows[i][5] = 0;
-                    theDataContainerHydrometer.Rows[i].AcceptChanges();
-                    theDataContainerHydrometer.Rows[i].EndEdit();
-                }
-                else
-                {
-                    theDataContainerHydrometer.Rows[i].BeginEdit();
-                    theDataContainerHydrometer.Rows[i][5] = 1;
-                    theDataContainerHydrometer.Rows[i].AcceptChanges();
-                    theDataContainerHydrometer.Rows[i].EndEdit();
-                }
+                MessageBox.Show("Error: Could not add grade values, please ensure that both student and instructor data is added to the system! \nOriginal error:\n " + ex.Message);
             }
-
-            for (int i = 0; i < theDataContainerBurette.Rows.Count; i++)
-            {
-                if (Convert.ToDouble(theDataContainerBurette.Rows[i][1]) > (instructorValues[2] + tolerances[2]) || Convert.ToDouble(theDataContainerBurette.Rows[i][1]) < (instructorValues[2] - tolerances[2]))
-                {
-                    theDataContainerBurette.Rows[i].BeginEdit();
-                    theDataContainerBurette.Rows[i][5] = 0;
-                    theDataContainerBurette.Rows[i].AcceptChanges();
-                    theDataContainerBurette.Rows[i].EndEdit();
-                }
-                else
-                {
-                    theDataContainerBurette.Rows[i].BeginEdit();
-                    theDataContainerBurette.Rows[i][5] = 1;
-                    theDataContainerBurette.Rows[i].AcceptChanges();
-                    theDataContainerBurette.Rows[i].EndEdit();
-                }
-            }
-
-            for (int i = 0; i < theDataContainerThermometer.Rows.Count; i++)
-            {
-                if (Convert.ToDouble(theDataContainerThermometer.Rows[i][1]) > (instructorValues[3] + tolerances[3]) || Convert.ToDouble(theDataContainerThermometer.Rows[i][1]) < (instructorValues[3] - tolerances[3]))
-                {
-                    theDataContainerThermometer.Rows[i].BeginEdit();
-                    theDataContainerThermometer.Rows[i][5] = 0;
-                    theDataContainerThermometer.Rows[i].AcceptChanges();
-                    theDataContainerThermometer.Rows[i].EndEdit();
-                }
-                else
-                {
-                    theDataContainerThermometer.Rows[i].BeginEdit();
-                    theDataContainerThermometer.Rows[i][5] = 1;
-                    theDataContainerThermometer.Rows[i].AcceptChanges();
-                    theDataContainerThermometer.Rows[i].EndEdit();
-                }
-            }
-
-            for (int i = 0; i < theDataContainerBalance.Rows.Count; i++)
-            {
-                if (Convert.ToDouble(theDataContainerBalance.Rows[i][1]) > (instructorValues[4] + tolerances[4]) || Convert.ToDouble(theDataContainerBalance.Rows[i][1]) < (instructorValues[4] - tolerances[4]))
-                {
-                    theDataContainerBalance.Rows[i].BeginEdit();
-                    theDataContainerBalance.Rows[i][5] = 0;
-                    theDataContainerBalance.Rows[i].AcceptChanges();
-                    theDataContainerBalance.Rows[i].EndEdit();
-                }
-                else
-                {
-                    theDataContainerBalance.Rows[i].BeginEdit();
-                    theDataContainerBalance.Rows[i][5] = 1;
-                    theDataContainerBalance.Rows[i].AcceptChanges();
-                    theDataContainerBalance.Rows[i].EndEdit();
-                }
-            }
-
-            for (int i = 0; i < theMasterDataTable.Rows.Count; i++)
-            {
-                theMasterDataTable.Rows[i].BeginEdit();
-                theMasterDataTable.Rows[i][6] = Convert.ToDouble(theDataContainerBalance.Rows[i][5]) + Convert.ToDouble(theDataContainerThermometer.Rows[i][5]) + Convert.ToDouble(theDataContainerBurette.Rows[i][5]) + Convert.ToDouble(theDataContainerHydrometer.Rows[i][5]) + Convert.ToDouble(theDataContainerGraduatedCylinder.Rows[i][5]);
-                theMasterDataTable.Rows[i].AcceptChanges();
-                theMasterDataTable.Rows[i].EndEdit();
-            }
-
-        }
-
-        public void makingTheDataTable()
-        {
-            dataGridView1.DataSource = theDataContainerGraduatedCylinder; //assign DataTable as Datasource for DataGridview
-            dataGridView1.Columns[0].Visible = false; //makes the names invisible originally
-
-
-            findAverage();
-            findStandardDev();
-            setHighValue();
-            setLowValue();
         }
     }
 }
