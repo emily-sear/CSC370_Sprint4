@@ -39,6 +39,8 @@ namespace Prototype1._0
                 Form1.tolerances[2] = Convert.ToDouble(textBox9.Text);
                 Form1.tolerances[3] = Convert.ToDouble(textBox10.Text);
                 Form1.tolerances[4] = Convert.ToDouble(textBox11.Text);
+
+                Close();
             }
             catch (Exception ex)
             {
